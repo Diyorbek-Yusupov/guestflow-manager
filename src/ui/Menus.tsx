@@ -119,9 +119,7 @@ function Toggle({ id }: IToggleProps) {
   const { close, open, openId, setPosition } = useContext(MenusContext);
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
-    const rect = (e.target as HTMLElement)
-      .closest('button')
-      ?.getBoundingClientRect();
+    const rect = (e.target as HTMLElement).getBoundingClientRect();
 
     if (!rect) return;
 

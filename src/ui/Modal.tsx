@@ -1,4 +1,3 @@
-import { useOutsideClick } from '@/hooks/useOutsideClick';
 import React, {
   ReactElement,
   cloneElement,
@@ -10,6 +9,7 @@ import React, {
 import { createPortal } from 'react-dom';
 import { HiXMark } from 'react-icons/hi2';
 import styled from 'styled-components';
+import Fade from './Fade';
 
 const StyledModal = styled.div`
   position: fixed;
@@ -101,18 +101,19 @@ function Open({ opens: openWindowName, children }: ModalOpenPropTypes) {
 
 function Window({ children, name }: ModalWindowPorpTypes) {
   const { openName, close } = useContext(ModalContext);
-  const ref = useOutsideClick<HTMLDivElement>(close);
 
   if (openName !== name) return null;
 
   return createPortal(
-    <Overlay>
-      <StyledModal ref={ref}>
-        <Button onClick={close}>
-          <HiXMark />
-        </Button>
-        <div>{cloneElement(children, { onCloseModal: close })}</div>
-      </StyledModal>
+    <Overlay onClick={close}>
+      <Fade>
+        <StyledModal onClick={(e) => e.stopPropagation()}>
+          <Button onClick={close}>
+            <HiXMark />
+          </Button>
+          <div>{cloneElement(children, { onCloseModal: close })}</div>
+        </StyledModal>
+      </Fade>
     </Overlay>,
     document.body
   );
