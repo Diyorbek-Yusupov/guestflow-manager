@@ -40,7 +40,6 @@ function CheckinBooking() {
     guests,
     totalPrice,
     numGuests,
-    hasBreakfast,
     numNights,
   } = booking || ({} as IBooking);
 
