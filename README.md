@@ -1,5 +1,7 @@
 # Guestflow manager dashboard
 
+## Free react dashboard template.
+
 A simple react.js dashboard app for hotel staff that automates the taking of guest orders.
 
 ## How to run in dev mode
